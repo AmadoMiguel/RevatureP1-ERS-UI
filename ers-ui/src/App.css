@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(16, 27, 78, 0.651), rgba(170, 166, 211, 0.671));
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  min-height: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgba(240, 240, 240, 0.9);
+}
+
+.App-link {
+  color: #09d3ac;
+}
+/* Title styling */
+#App-title {
+  font-variant-caps: titling-caps;
+}
+
+#next-gen {
+  font-size: calc(10px + 1.8vmin);
+  vertical-align: super;
+}
+
+#login-paper {
+  margin:10px auto;
+  background-image: linear-gradient(rgba(190, 190, 190, 0.842), rgba(96, 97, 98, 0.451));
+}
+#login-button {
+  margin:10px auto;
+}
