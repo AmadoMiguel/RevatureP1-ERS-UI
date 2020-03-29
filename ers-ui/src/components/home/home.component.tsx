@@ -6,7 +6,6 @@ export default function HomeComponent(props:any) {
     return (
         <div>
             <TitleComponent />
-            <LoginComponent />
         </div>
     )
 }

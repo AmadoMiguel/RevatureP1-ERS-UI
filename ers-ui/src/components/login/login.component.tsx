@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import '../../App.css';
-import { FormControl, Typography, CardActions, Button, Paper} from '@material-ui/core';
+import { Typography, CardActions, Button, Card} from '@material-ui/core';
 import { bootstrapGrid, loginFormStyles } from './styles/login.styles';
-import LoginInput from './form_elements/input.login';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Lock from '@material-ui/icons/Lock';
 import LoginForm from './form_elements/form.login';
+import TitleComponent from '../home/title.component';
+import { useHistory } from 'react-router-dom';
 
 export default function LoginComponent(props:any) {
     // Load styles
     const styles = loginFormStyles();
+    // History
+    const history = useHistory();
 
     // Hooks to control the form state
     const [username, setUsername] = useState<string>("");
@@ -34,7 +35,7 @@ export default function LoginComponent(props:any) {
     // Handle login action
     const handleLogin = () => {
         if (username && password) {
-            // Perform post request with credentials
+            history.push("/");
         } else {
             setWarnUsername(username == "");
             setWarnPassword(password == "");
@@ -43,7 +44,8 @@ export default function LoginComponent(props:any) {
     
     return (
         <>
-            <Paper className={bootstrapGrid.form}
+            <TitleComponent/>
+            <Card className={bootstrapGrid.form}
             id="login-paper">
                 <Typography
                 color="textPrimary" variant="h5"
@@ -69,7 +71,7 @@ export default function LoginComponent(props:any) {
                         </Typography>
                     </Button>
                 </CardActions>
-            </Paper>
+            </Card>
         </>
     )
 }

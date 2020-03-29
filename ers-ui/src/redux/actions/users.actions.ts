@@ -16,17 +16,16 @@ export const updateUserLoggedIn = (val:boolean) => (dispatch:Dispatch<DispatchPa
     });
 };
 
-export const updateSessionUser = 
-(auth:UserAuthentication) => (dispatch:Dispatch<DispatchPayload<UserAuthentication>>) => {
+export const updateSessionUser = (auth:UserAuthentication) => (dispatch:Dispatch<DispatchPayload<UserAuthentication>>) => {
     dispatch({
         actionType:userActionTypes.UPDATE_SESSION_INFO,
         actionPayload:auth
     });
 };
 
-export const updateUserInfo = (user:User) => (dispatch:Dispatch<any>) => {
+export const updateUserInfo = (user:User) => (dispatch:Dispatch<DispatchPayload<User>>) => {
     dispatch({
-        type:userActionTypes.UPDATE_USER_INFO,
-        userInfo:user
+        actionType:userActionTypes.UPDATE_USER_INFO,
+        actionPayload:user
     });
 };

@@ -33,8 +33,9 @@
 
 #login-paper {
   margin:10px auto;
-  background-image: linear-gradient(rgba(190, 190, 190, 0.842), rgba(96, 97, 98, 0.451));
+  background-image: linear-gradient(rgba(140, 140, 140, 0.842), rgba(96, 97, 98, 0.451));
 }
 #login-button {
   margin:10px auto;
+  background-color: rgba(220,220,220,0.8);
 }
