@@ -5,6 +5,7 @@ import Router from './components/router/router.component';
 import {Provider} from 'react-redux';
 import { store } from './redux/Store';
 import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const App: React.FC = () => {
         <Router/>
         {/* Toaster for UI notifications */}
         <ToastContainer
-        autoClose={2000}
+        autoClose={3000}
         position={toast.POSITION.BOTTOM_RIGHT}/>
       </Provider>
     </div>

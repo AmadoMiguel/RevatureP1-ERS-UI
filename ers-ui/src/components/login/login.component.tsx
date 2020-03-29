@@ -5,6 +5,10 @@ import { bootstrapGrid, loginFormStyles } from './styles/login.styles';
 import LoginForm from './form_elements/form.login';
 import TitleComponent from '../home/title.component';
 import { useHistory } from 'react-router-dom';
+import { userClient } from '../../clients/user-client';
+import { UserAuthentication } from '../../models/redux_models/UserAuthentication';
+import { AxiosResponse } from 'axios';
+import {toast} from 'react-toastify';
 
 export default function LoginComponent(props:any) {
     // Load styles
@@ -35,10 +39,27 @@ export default function LoginComponent(props:any) {
     // Handle login action
     const handleLogin = () => {
         if (username && password) {
-            history.push("/");
+            userClient.loginUser({
+                username:username,
+                password:password
+            })
+            .then((response:AxiosResponse<UserAuthentication>) => {
+                // Fill in redux authentication info
+                toast.success("Welcome");
+                history.push("/");
+            })
+            .catch((err) => {
+                console.log(err);
+                // Handle error
+                setWarning({
+                    ...warning,
+                    error: true
+                });
+                toast.error("Invalid credentials");
+            });
         } else {
-            setWarnUsername(username == "");
-            setWarnPassword(password == "");
+            setWarnUsername(!username);
+            setWarnPassword(!password);
         }
     }
     

@@ -14,6 +14,7 @@ const initialState: UserState = {
     userInfo:{
         id:0,
         username:"",
+        password:"",
         firstName:"",
         lastName:"",
         email:"",

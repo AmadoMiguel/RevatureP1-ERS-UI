@@ -8,21 +8,59 @@ import { pagesActionTypes } from "../actions/pages.actions";
 const initialState:CurrentInfo = {
     currentUsersPage : {
         content:[],
-        totalPages:0,
-        pageSize:0,
-        first:false,
-        last:false,
-        pageNumber:0,
-        empty:true
+        pageable: {
+            sort:{
+                sorted:false,
+                unsorted:true,
+                empty:true
+            },
+            offset:0,
+            pageNumber:0,
+            pageSize:0,
+            unpaged:false,
+            paged:true
+        },
+        totalPages: 0,
+        totalElements: 0,
+        last: true,
+        size: 0,
+        number: 0,
+        sort: {
+            sorted:false,
+            unsorted:true,
+            empty:true
+        },
+        numberOfElements: 0,
+        first: true,
+        empty: true
     },
     currentReimbursementsPage: {
         content:[],
-        totalPages:0,
-        pageSize:0,
-        first:false,
-        last:false,
-        pageNumber:0,
-        empty:true
+        pageable: {
+            sort:{
+                sorted:false,
+                unsorted:true,
+                empty:true
+            },
+            offset:0,
+            pageNumber:0,
+            pageSize:0,
+            unpaged:false,
+            paged:true
+        },
+        totalPages: 0,
+        totalElements: 0,
+        last: true,
+        size: 0,
+        number: 0,
+        sort: {
+            sorted:false,
+            unsorted:true,
+            empty:true
+        },
+        numberOfElements: 0,
+        first: true,
+        empty: true
     }
 }
 
