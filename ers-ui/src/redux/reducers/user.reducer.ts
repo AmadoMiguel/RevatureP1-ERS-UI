@@ -26,18 +26,18 @@ const initialState: UserState = {
 }
 
 export function userReducer (state:UserState = initialState, action:any) : UserState {
-    switch(action.actionType) {
+    switch(action.type) {
         case userActionTypes.UPDATE_USER_LOGGED_IN:
             return {
-                ...state, isLoggedIn:action.actionPayload
+                ...state, isLoggedIn:action.payload
             }
         case userActionTypes.UPDATE_SESSION_INFO:
             return {
-                ...state, sessionInfo:action.actionPayload
+                ...state, sessionInfo:action.payload
             }
         case userActionTypes.UPDATE_USER_INFO:
             return {
-                ...state, userInfo:action.actionPayload
+                ...state, userInfo:action.payload
             }
         default:
             return state

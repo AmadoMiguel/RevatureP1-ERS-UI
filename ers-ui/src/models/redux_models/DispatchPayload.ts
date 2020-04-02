@@ -1,4 +1,4 @@
 export interface DispatchPayload<T> {
-    actionType:string;
-    actionPayload:T;
+    type:string;
+    payload:T;
 }

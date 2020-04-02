@@ -65,14 +65,14 @@ const initialState:CurrentInfo = {
 }
 
 export function currentInfoReducer (state:CurrentInfo = initialState, action:any) : CurrentInfo {
-        switch(action.actionType) {
+        switch(action.type) {
             case pagesActionTypes.UPDATE_USERS_PAGE:
                 return {
-                    ...state, currentUsersPage:action.actionPayload
+                    ...state, currentUsersPage:action.payload
                 }
             case pagesActionTypes.UPDATE_REIMBURSEMENTS_PAGE:
                 return {
-                    ...state, currentReimbursementsPage:action.actionPayload
+                    ...state, currentReimbursementsPage:action.payload
                 }
             default:
                 return state;

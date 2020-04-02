@@ -13,8 +13,8 @@ export const pagesActionTypes = {
 export const updateUsersPage = (usersPage:Page<User>) => (dispatch:Dispatch<DispatchPayload<Page<User>>>) => {
     dispatch(
         {
-            actionType:pagesActionTypes.UPDATE_USERS_PAGE,
-            actionPayload:usersPage
+            type:pagesActionTypes.UPDATE_USERS_PAGE,
+            payload:usersPage
         }
     )
 }
@@ -22,8 +22,8 @@ export const updateUsersPage = (usersPage:Page<User>) => (dispatch:Dispatch<Disp
 export const updateReimbursementsPage = (reimbursementsPage:Page<Reimbursement>) => (dispatch:Dispatch<DispatchPayload<Page<Reimbursement>>>) => {
     dispatch(
         {
-            actionType:pagesActionTypes.UPDATE_REIMBURSEMENTS_PAGE,
-            actionPayload:reimbursementsPage
+            type:pagesActionTypes.UPDATE_REIMBURSEMENTS_PAGE,
+            payload:reimbursementsPage
         }
     )
 }

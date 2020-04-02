@@ -11,21 +11,21 @@ export const userActionTypes = {
 
 export const updateUserLoggedIn = (val:boolean) => (dispatch:Dispatch<DispatchPayload<boolean>>) => {
     dispatch({
-        actionType:userActionTypes.UPDATE_USER_LOGGED_IN,
-        actionPayload:val
+        type:userActionTypes.UPDATE_USER_LOGGED_IN,
+        payload:val
     });
 };
 
 export const updateSessionUser = (auth:UserAuthentication) => (dispatch:Dispatch<DispatchPayload<UserAuthentication>>) => {
     dispatch({
-        actionType:userActionTypes.UPDATE_SESSION_INFO,
-        actionPayload:auth
+        type:userActionTypes.UPDATE_SESSION_INFO,
+        payload:auth
     });
 };
 
 export const updateUserInfo = (user:User) => (dispatch:Dispatch<DispatchPayload<User>>) => {
     dispatch({
-        actionType:userActionTypes.UPDATE_USER_INFO,
-        actionPayload:user
+        type:userActionTypes.UPDATE_USER_INFO,
+        payload:user
     });
 };

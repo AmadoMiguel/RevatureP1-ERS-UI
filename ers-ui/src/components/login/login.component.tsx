@@ -9,8 +9,17 @@ import { userClient } from '../../clients/user-client';
 import { UserAuthentication } from '../../models/redux_models/UserAuthentication';
 import { AxiosResponse } from 'axios';
 import {toast} from 'react-toastify';
+import { User } from '../../models/DTOs/User';
+import { updateUserLoggedIn, updateSessionUser, updateUserInfo } from '../../redux/actions/users.actions';
+import { connect } from 'react-redux';
+import { AppState } from '../../models/redux_models/AppState';
 
-export default function LoginComponent(props:any) {
+interface ILoginProps {
+    updateUserLoggedIn:(val:boolean) => void;
+    updateSessionUser:(auth:UserAuthentication) => void;
+}
+
+export function LoginComponent(props:ILoginProps) {
     // Load styles
     const styles = loginFormStyles();
     // History
@@ -45,7 +54,8 @@ export default function LoginComponent(props:any) {
             })
             .then((response:AxiosResponse<UserAuthentication>) => {
                 // Fill in redux authentication info
-                toast.success("Welcome");
+                props.updateUserLoggedIn(true);
+                props.updateSessionUser(response.data);
                 history.push("/");
             })
             .catch((err) => {
@@ -96,3 +106,10 @@ export default function LoginComponent(props:any) {
         </>
     )
 }
+
+// Hook login component actions to redux actions
+const mapDispatchToProps = {
+    updateUserLoggedIn:updateUserLoggedIn,
+    updateSessionUser:updateSessionUser
+};
+export default connect(null,mapDispatchToProps)(LoginComponent);

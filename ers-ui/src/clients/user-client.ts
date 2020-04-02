@@ -7,8 +7,11 @@ const usersUrl = "/ers/users";
 
 export const userClient = {
     requestAllUsers(pageNum:number, sortOrders:string[], firstNameLike:string, lastNameLike:string, 
-        emailMatcher:string, usernameMatcher:string) {
+        emailMatcher:string, usernameMatcher:string, jwt:string) {
             return ersClient.get(`${usersUrl}/info`, {
+                headers:{
+                    Authorization:jwt
+                },
                 params:{
                     page:pageNum,
                     sortOrders:sortOrders,
@@ -20,7 +23,15 @@ export const userClient = {
             });
     },
     requestUserInformation(userId:number) {
-        return ersClient.get(`${usersUrl}/info/${userId}`);
+        return ersClient.get(`${usersUrl}/id/${userId}`);
+    },
+    findUserByUsername(username:string, jwt:string) {
+        return ersClient.get(`${usersUrl}/username/${username}`,
+        {
+            headers:{
+                Authorization:jwt
+            }
+        });
     },
     loginUser(userCredentials:UserCredentials) {
         return ersClient.post(`${usersUrl}/login`, userCredentials);
