@@ -13,6 +13,7 @@ import { User } from '../../models/DTOs/User';
 import { updateUserLoggedIn, updateSessionUser, updateUserInfo } from '../../redux/actions/users.actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../models/redux_models/AppState';
+import { Spinner } from 'react-bootstrap';
 
 interface ILoginProps {
     updateUserLoggedIn:(val:boolean) => void;
@@ -34,6 +35,7 @@ export function LoginComponent(props:ILoginProps) {
         required: false,
         error: false
     });
+    const [loading, setLoading] = useState<boolean>(false);
 
     // Any time the username/password changes, the warnings are disabled
     useEffect(() => {
@@ -48,6 +50,7 @@ export function LoginComponent(props:ILoginProps) {
     // Handle login action
     const handleLogin = () => {
         if (username && password) {
+            setLoading(true);
             userClient.loginUser({
                 username:username,
                 password:password
@@ -56,6 +59,7 @@ export function LoginComponent(props:ILoginProps) {
                 // Fill in redux authentication info
                 props.updateUserLoggedIn(true);
                 props.updateSessionUser(response.data);
+                setLoading(false);
                 history.push("/");
             })
             .catch((err) => {
@@ -65,6 +69,7 @@ export function LoginComponent(props:ILoginProps) {
                     ...warning,
                     error: true
                 });
+                setLoading(false);
                 toast.error("Invalid credentials");
             });
         } else {
@@ -76,8 +81,10 @@ export function LoginComponent(props:ILoginProps) {
     return (
         <>
             <TitleComponent/>
+            <Spinner animation="border" hidden={!loading}/>
             <Card className={bootstrapGrid.form}
-            id="login-paper">
+            id="login-paper"
+            hidden={loading}>
                 <Typography
                 color="textPrimary" variant="h5"
                 className={styles.title}>

@@ -31,6 +31,11 @@
   vertical-align: super;
 }
 
+#brand {
+  font-size: calc(10px + 1.3vmin);
+  vertical-align: super;
+}
+
 #login-paper {
   margin:10px auto;
   background-image: linear-gradient(rgba(140, 140, 140, 0.842), rgba(96, 97, 98, 0.451));
