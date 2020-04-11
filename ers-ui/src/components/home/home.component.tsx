@@ -21,12 +21,9 @@ interface IHomeProps {
 export function HomeComponent(props:IHomeProps) {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const history = useHistory();
 
         useEffect(() => {
-            if (!props.userInfo.isLoggedIn) {
-                history.push("/login");
-            } else if (!props.userInfo.userInfo.id) {
+            if (!props.userInfo.userInfo.id) {
                 userClient.findUserByUsername(props.userInfo.sessionInfo.username,
                     props.userInfo.sessionInfo.jwt)
                 .then((resp:AxiosResponse<User>) => {
@@ -46,7 +43,6 @@ export function HomeComponent(props:IHomeProps) {
 
     return (
         <>
-            <NavBarComponent/>
             <TitleComponent/>
             <Spinner animation="grow" hidden={!isLoading}/>
             <UserProfile 

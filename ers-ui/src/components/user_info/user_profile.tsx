@@ -40,6 +40,12 @@ export function UserProfile(props:IProfileProps) {
                     <Col><strong>Email</strong></Col>
                     <Col>{props.userInfo.email}</Col>
                 </Row>
+                <Row style={{
+                    padding:"10px"
+                }}>
+                    <Col><strong>Role</strong></Col>
+                    <Col>{props.userInfo.role.name}</Col>
+                </Row>
             </Paper>
         </>
     )

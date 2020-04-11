@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Router from './components/router/router.component';
+import RouterComponent from './components/router/router.component';
 import {Provider} from 'react-redux';
 import './redux/Store';
 import {ToastContainer, toast} from 'react-toastify';
@@ -18,7 +18,7 @@ const App: React.FC = () => {
       <Provider store={myStore}>
         <PersistGate loading={null} persistor={myPersistor}>
           {/* Routes mapping */}
-          <Router/>
+          <RouterComponent />
         </PersistGate>
         {/* Toaster for UI notifications */}
         <ToastContainer
