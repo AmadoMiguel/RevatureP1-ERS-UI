@@ -36,7 +36,7 @@ export const userClient = {
     loginUser(userCredentials:UserCredentials) {
         return ersClient.post(`${usersUrl}/login`, userCredentials);
     },
-    registerNewUser(newUser:User) {
+    registerNewUser(newUser:any) {
         return ersClient.post(`${usersUrl}/register`, newUser);
     },
     updateUserInfo(updateUser:User) {

@@ -13,7 +13,7 @@ import { User } from '../../models/DTOs/User';
 import { updateUserLoggedIn, updateSessionUser, updateUserInfo } from '../../redux/actions/users.actions';
 import { connect } from 'react-redux';
 import { AppState } from '../../models/redux_models/AppState';
-import { Spinner } from 'react-bootstrap';
+import { Spinner, Row, Col } from 'react-bootstrap';
 
 interface ILoginProps {
     updateUserLoggedIn:(val:boolean) => void;
@@ -63,14 +63,13 @@ export function LoginComponent(props:ILoginProps) {
                 history.push("/");
             })
             .catch((err) => {
-                console.log(err);
                 // Handle error
                 setWarning({
                     ...warning,
                     error: true
                 });
                 setLoading(false);
-                toast.error("Invalid credentials");
+                toast.error(err.response.data);
             });
         } else {
             setWarnUsername(!username);
@@ -81,10 +80,8 @@ export function LoginComponent(props:ILoginProps) {
     return (
         <>
             <TitleComponent/>
-            <Spinner animation="border" hidden={!loading}/>
             <Card className={bootstrapGrid.form}
-            id="login-paper"
-            hidden={loading}>
+            id="login-paper">
                 <Typography
                 color="textPrimary" variant="h5"
                 className={styles.title}>
@@ -100,15 +97,22 @@ export function LoginComponent(props:ILoginProps) {
                 setPassword={setPassword}
                 warnPassword={warnPassword}/>
                 <CardActions>
+                    <Spinner animation="border" hidden={!loading}/>
                     <Button 
                     id="login-button"
                     className={bootstrapGrid.loginButton}
-                    onClick={handleLogin}>
+                    onClick={handleLogin}
+                    hidden={loading}>
                         <Typography variant="button">
                             Login
                         </Typography>
                     </Button>
                 </CardActions>
+                <Row>
+                    <Col>
+                        <i>Don't have an account? <a href="/signup">Register</a></i>
+                    </Col>
+                </Row>
             </Card>
         </>
     )

@@ -7,6 +7,7 @@ import LogoutComponent from '../login/logout';
 import { UserState } from '../../models/redux_models/UserState';
 import { AppState } from '../../models/redux_models/AppState';
 import { connect } from 'react-redux';
+import { SignupComponent } from '../login/signup.component';
 
 interface IRouterProps {
     user:UserState
@@ -18,6 +19,7 @@ export function RouterComponent(props:IRouterProps) {
             <BrowserRouter>
                 <Switch>
                 <Route path="/login"> <LoginComponent/> </Route>
+                <Route path="/signup"><SignupComponent/></Route>
                     {
                         props.user.isLoggedIn &&
                         <>
