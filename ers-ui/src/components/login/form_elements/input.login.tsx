@@ -7,8 +7,7 @@ import { red, yellow, blue } from '@material-ui/core/colors';
 export default function LoginInput(props:any) {
     const theme = createMuiTheme({
         palette: {
-            error: props.warning.error? red : 
-                   props.warning.required? yellow :
+            error: props.warning? yellow :
                    blue
         }
     });

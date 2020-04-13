@@ -125,6 +125,7 @@ export function SignupComponent(props:any) {
                                 isInvalid={userInfo.confirmedPass?
                                     userInfo.confirmedPass!=userInfo.password:
                                     false}
+                                pattern={userInfo.password}
                                 onChange={handleChange}
                                 value={userInfo.confirmedPass} required/>
                             </Form.Group>

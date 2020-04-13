@@ -33,8 +33,15 @@ export const userClient = {
             }
         });
     },
-    loginUser(userCredentials:UserCredentials) {
-        return ersClient.post(`${usersUrl}/login`, userCredentials);
+    loginUser(username:string) {
+        return ersClient.post(`${usersUrl}/login/username/${username}`);
+    },
+    loginPassword(pass:string, jwt:string) {
+        return ersClient.post(`${usersUrl}/login/password/${pass}`,null,{
+            headers:{
+                Authorization:jwt
+            }
+        });
     },
     registerNewUser(newUser:any) {
         return ersClient.post(`${usersUrl}/register`, newUser);
@@ -42,8 +49,13 @@ export const userClient = {
     updateUserInfo(updateUser:User) {
         return ersClient.put(`${usersUrl}/update`, updateUser);
     },
-    changePassword(userPasswords:UserPasswords) {
-        return ersClient.patch(`${usersUrl}/update/password`, userPasswords);
+    changePassword(userPasswords:UserPasswords, jwt:string) {
+        return ersClient.patch(`${usersUrl}/update/password`, userPasswords,
+        {
+            headers:{
+                Authorization:jwt
+            }
+        });
     },
     removeUser(userId:number) {
         return ersClient.delete(`${usersUrl}/${userId}`);

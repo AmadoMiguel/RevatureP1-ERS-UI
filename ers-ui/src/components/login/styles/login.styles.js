@@ -20,5 +20,5 @@ export const loginFormStyles = makeStyles({
 export const bootstrapGrid = {
     form: "col-xl-4 col-lg-6 col-sm-6",
     inputFields: "col-xl-12 col-lg-12 col-sm-12",
-    loginButton: "col-xl-7 col-lg-7 col-sm-4"
+    loginButton: "col-xl-6 col-lg-6 col-sm-3"
 }
