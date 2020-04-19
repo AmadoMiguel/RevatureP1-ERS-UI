@@ -20,6 +20,8 @@ export function currentInfoReducer (state:CurrentInfo = initialState, action:any
                 return {
                     ...state, currentReimbursementsPage:action.payload
                 }
+            case pagesActionTypes.CLEAR_INFO:
+                return initialState;
             default:
                 return state;
         }

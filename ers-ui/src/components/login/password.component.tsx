@@ -60,6 +60,10 @@ export function PasswordComponent(props:IPasswordsComponent) {
             <Card className="col-xl-4 col-sm-8" style={{margin:'5px auto'}}>
                 <Typography gutterBottom variant="h5">Change Password</Typography>
                 <Form onSubmit={handleSubmit} className="needs-validation">
+                    <Typography
+                    color="textSecondary" variant="subtitle2">
+                        Username: {props.user.sessionInfo.username}
+                    </Typography>
                     <Row>
                         <Col>
                             <Form.Group>

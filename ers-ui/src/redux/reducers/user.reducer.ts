@@ -39,6 +39,8 @@ export function userReducer (state:UserState = initialState, action:any) : UserS
             return {
                 ...state, userInfo:action.payload
             }
+        case userActionTypes.LOGOUT_USER:
+            return initialState
         default:
             return state
     }

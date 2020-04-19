@@ -12,6 +12,8 @@ import { Spinner } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { UserProfile } from '../user_info/user_profile';
 import NavBarComponent from '../navbar/navbar.component';
+import { Typography } from '@material-ui/core';
+import GeneralTitleComponent from '../general_title';
 
 interface IHomeProps {
     userInfo:UserState;
@@ -43,7 +45,7 @@ export function HomeComponent(props:IHomeProps) {
 
     return (
         <>
-            <TitleComponent/>
+            <GeneralTitleComponent message="Home"/>
             <Spinner animation="grow" hidden={!isLoading}/>
             <UserProfile 
             hidden={isLoading}

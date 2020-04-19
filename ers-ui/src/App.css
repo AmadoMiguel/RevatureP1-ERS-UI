@@ -44,3 +44,8 @@
   margin:10px auto;
   background-color: rgba(220,220,220,0.8);
 }
+.ers-table {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  width: 80%;
+}

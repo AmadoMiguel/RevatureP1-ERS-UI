@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import NavBarComponent from '../navbar/navbar.component';
 import HomeComponent from '../home/home.component';
 import LogoutComponent from '../login/logout';
@@ -10,6 +10,7 @@ import { SignupComponent } from '../login/signup.component';
 import PasswordComponent from '../login/password.component';
 import LoginUsername from '../login/login.username';
 import LoginPassword from '../login/login.password';
+import UsersComponent from '../users/users.component';
 
 interface IRouterProps {
     user:UserState
@@ -17,24 +18,28 @@ interface IRouterProps {
 
 export function RouterComponent(props:IRouterProps) {
     return (
-        <div>
-            <BrowserRouter>
-                <Switch>
-                <Route path="/login"> <LoginUsername/> </Route>
-                <Route path="/password"> <LoginPassword/> </Route>
-                <Route path="/signup"><SignupComponent/></Route>
-                <Route path="/changePassword"><PasswordComponent/></Route>
-                <Route path="/logout"> <LogoutComponent/> </Route>
-                    {
-                        props.user.isLoggedIn &&
-                        <>
-                            <NavBarComponent/>
-                            <Route exact path="/"> <HomeComponent/> </Route>
-                        </>
-                    }
-                </Switch>
-            </BrowserRouter>
-        </div>
+        <BrowserRouter>
+            {props.user.isLoggedIn && <NavBarComponent/>}
+            <Switch>
+                <Route path="/login" component={LoginUsername}/>
+                <Route path="/password" component={LoginPassword}/>
+                <Route path="/signup" component={SignupComponent}/>
+                <Route path="/changePassword"
+                component={props.user.sessionInfo.username?PasswordComponent:
+                ()=>{return <><Redirect to="/login"/></>}}/>
+                <Route path="/home" component={props.user.isLoggedIn?HomeComponent:
+                ()=>{return <><Redirect to="/login"/></>}}/>
+                <Route exact path="/" render={()=>(
+                    props.user.isLoggedIn ? <Redirect to="/home"/>:
+                    <Redirect to="/login"/>
+                )}/>
+                <Route path="/users" component={props.user.isLoggedIn?UsersComponent:
+                ()=>{return <><Redirect to="/login"/></>}} />
+                <Route path="/logout"
+                component={(props.user.isLoggedIn||props.user.sessionInfo.username)?LogoutComponent:
+                    ()=>{return <><Redirect to="/login"/></>}}/>
+            </Switch>
+        </BrowserRouter>
     )
 }
 

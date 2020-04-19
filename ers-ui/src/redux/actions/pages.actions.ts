@@ -7,7 +7,8 @@ import { Reimbursement } from "../../models/DTOs/Reimbursement";
 
 export const pagesActionTypes = {
     UPDATE_USERS_PAGE : "UPDATE_USERS_PAGE",
-    UPDATE_REIMBURSEMENTS_PAGE: "UPDATE_REIMBURSEMENTS_PAGE"
+    UPDATE_REIMBURSEMENTS_PAGE: "UPDATE_REIMBURSEMENTS_PAGE",
+    CLEAR_INFO:"CLEAR_INFO"
 }
 
 export const updateUsersPage = (usersPage:Page<User>) => (dispatch:Dispatch<DispatchPayload<Page<User>>>) => {
@@ -24,6 +25,14 @@ export const updateReimbursementsPage = (reimbursementsPage:Page<Reimbursement>)
         {
             type:pagesActionTypes.UPDATE_REIMBURSEMENTS_PAGE,
             payload:reimbursementsPage
+        }
+    )
+}
+
+export const clearInfo = () => (dispatch:Dispatch<any>) => {
+    dispatch(
+        {
+            type:pagesActionTypes.CLEAR_INFO
         }
     )
 }

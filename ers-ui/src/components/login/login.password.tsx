@@ -10,7 +10,7 @@ import { userClient } from '../../clients/user-client';
 import { UserAuthentication } from '../../models/redux_models/UserAuthentication';
 import { AxiosResponse } from 'axios';
 import {toast} from 'react-toastify';
-import { updateSessionUser, updateUserLoggedIn } from '../../redux/actions/users.actions';
+import { updateSessionUser, updateUserLoggedIn, logoutUser } from '../../redux/actions/users.actions';
 import { connect } from 'react-redux';
 import { Spinner, Row, Col } from 'react-bootstrap';
 import LoginInput from './form_elements/input.login';
@@ -53,7 +53,6 @@ export function LoginPassword(props:ILoginPasswordProps) {
     }
     
     const handleBack = () => {
-        setLoading(true);
         history.push("/logout");
     }
 
@@ -65,7 +64,7 @@ export function LoginPassword(props:ILoginPasswordProps) {
             .then((resp:AxiosResponse<UserAuthentication>)=>{
                 props.updateUserLoggedIn(true);
                 setLoading(false);
-                history.push("/");
+                history.push("/home");
             })
             .catch((err)=>{
                 toast.error(err.response.data);

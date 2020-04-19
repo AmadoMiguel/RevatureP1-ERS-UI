@@ -6,7 +6,8 @@ import { DispatchPayload } from "../../models/redux_models/DispatchPayload";
 export const userActionTypes = {
     UPDATE_USER_LOGGED_IN: "UPDATE_USER_LOGGED_IN",
     UPDATE_SESSION_INFO: "UPDATE_SESSION_INFO",
-    UPDATE_USER_INFO: "UPDATE_USER_INFO"
+    UPDATE_USER_INFO: "UPDATE_USER_INFO",
+    LOGOUT_USER:"LOGOUT_USER"
 };
 
 export const updateUserLoggedIn = (val:boolean) => (dispatch:Dispatch<DispatchPayload<boolean>>) => {
@@ -29,3 +30,9 @@ export const updateUserInfo = (user:User) => (dispatch:Dispatch<DispatchPayload<
         payload:user
     });
 };
+
+export const logoutUser = () => (dispatch:Dispatch<any>) => {
+    dispatch({
+        type:userActionTypes.LOGOUT_USER
+    });
+}

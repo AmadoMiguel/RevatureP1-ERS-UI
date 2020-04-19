@@ -100,20 +100,21 @@ export function LoginUsername(props:ILoginUsernameProps) {
                     </ThemeProvider>
                 </FormControl>
                 <CardActions>
-                    <Spinner animation="border" hidden={!loading}/>
                     <Button 
                     id="login-button"
                     className={bootstrapGrid.loginButton}
-                    onClick={handleLogin}
-                    hidden={loading}>
-                        <Row>
-                            <Col>
-                                <Typography variant="button">Next</Typography>
-                            </Col>
-                            <Col>
-                                <ArrowRight/>
-                            </Col>
-                        </Row>
+                    onClick={handleLogin}>
+                        {
+                            loading? <Row><Spinner animation="border" size="sm"/></Row>:
+                            <Row>
+                                <Col>
+                                    <Typography variant="button">Next</Typography>
+                                </Col>
+                                <Col>
+                                    <ArrowRight/>
+                                </Col>
+                            </Row>
+                        }
                     </Button>
                 </CardActions>
                 <Row>
