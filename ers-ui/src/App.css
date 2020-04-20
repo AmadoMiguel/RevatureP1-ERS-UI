@@ -49,3 +49,55 @@
   overflow-y: scroll;
   width: 80%;
 }
+#pagination-controls {
+  padding-top: 25px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.disabled-control {
+  color:#aaa;
+}
+#pagination-controls>div{
+  font-weight: bold;
+  transition:0.5s;
+}
+#pagination-controls > div:not(.disabled-control):hover {
+  color:blue;
+  background:#EEE;
+  cursor: pointer;
+  transition:0.5s;
+}
+
+.user-box {
+  margin: 5px;
+  /* justify-content: center; */
+  padding: 80px;
+  height: 250px;
+  display: inline-block;
+  background: white;
+  transition: 0.5s;
+  border-radius: 5px;
+  position: absolute;
+}
+.user-box:hover {
+  background: rgba(96, 97, 98, 0.451);
+  transition: 0.5s;
+  color: beige;
+  cursor: pointer;
+}
+.user-box #hover-info {
+  display: none;
+  transition: 0.5s;
+  font-size: 13px;
+  color: aliceblue;
+  position: absolute;
+  width: 100%;
+}
+.user-box:hover #hover-info {
+  margin: 30px 5px;
+  display: block;
+  transition: 0.5s;
+}
+.user-dialog{
+  background: rgba(96, 97, 98, 0.451);
+}

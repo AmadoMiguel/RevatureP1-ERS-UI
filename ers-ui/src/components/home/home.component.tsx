@@ -48,6 +48,7 @@ export function HomeComponent(props:IHomeProps) {
             <GeneralTitleComponent message="Home"/>
             <Spinner animation="grow" hidden={!isLoading}/>
             <UserProfile 
+            className="col-xl-4 col-lg-6 col-sm-6"
             hidden={isLoading}
             userInfo={props.userInfo.userInfo}/>
         </>

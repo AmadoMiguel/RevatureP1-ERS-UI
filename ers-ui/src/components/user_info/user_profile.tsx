@@ -5,7 +5,8 @@ import { Row, Col } from 'react-bootstrap';
 
 interface IProfileProps {
     hidden:boolean,
-    userInfo:User
+    userInfo:User,
+    className:string
 }
 
 export function UserProfile(props:IProfileProps) {
@@ -13,8 +14,15 @@ export function UserProfile(props:IProfileProps) {
         <>
             <Paper
             style={{margin:"10px auto"}}
-            className="col-xl-4 col-lg-6 col-sm-6"
+            className={props.className}
             hidden={props.hidden}>
+                <Row
+                style={{
+                    padding:"10px"
+                }}>
+                    <Col><strong>ID</strong></Col>
+                    <Col>{props.userInfo.id}</Col>
+                </Row>
                 <Row
                 style={{
                     padding:"10px"

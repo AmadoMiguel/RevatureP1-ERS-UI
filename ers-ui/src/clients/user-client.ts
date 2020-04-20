@@ -46,8 +46,13 @@ export const userClient = {
     registerNewUser(newUser:any) {
         return ersClient.post(`${usersUrl}/register`, newUser);
     },
-    updateUserInfo(updateUser:User) {
-        return ersClient.put(`${usersUrl}/update`, updateUser);
+    updateUserInfo(updateUser:User, jwt:string) {
+        return ersClient.put(`${usersUrl}/update`, updateUser,
+        {
+            headers:{
+                Authorization:jwt
+            }
+        });
     },
     changePassword(userPasswords:UserPasswords, jwt:string) {
         return ersClient.patch(`${usersUrl}/update/password`, userPasswords,
