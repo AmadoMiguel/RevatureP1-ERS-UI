@@ -7,6 +7,15 @@ import { pagesActionTypes } from "../actions/pages.actions";
 
 const initialState:CurrentInfo = {
     currentUsersPage : pageModel,
+    currentUserSearchFilters:{
+        page:0,
+        firstNameLike:'',
+        lastNameLike:'',
+        emailMatcher:'',
+        usernameMatcher:'',
+        roleId:0,
+        sortOrders:[]
+    },
     currentReimbursementsPage: pageModel
 }
 
@@ -15,6 +24,10 @@ export function currentInfoReducer (state:CurrentInfo = initialState, action:any
             case pagesActionTypes.UPDATE_USERS_PAGE:
                 return {
                     ...state, currentUsersPage:action.payload
+                }
+            case pagesActionTypes.UPDATE_USERS_FILTER:
+                return {
+                    ...state, currentUserSearchFilters:action.payload
                 }
             case pagesActionTypes.UPDATE_REIMBURSEMENTS_PAGE:
                 return {

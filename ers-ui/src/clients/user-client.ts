@@ -2,23 +2,26 @@ import { ersClient } from ".";
 import { UserCredentials } from "../models/DTOs/UserCredentials";
 import { User } from "../models/DTOs/User";
 import { UserPasswords } from "../models/DTOs/UserPasswords";
+import { Role } from "../models/DTOs/Role";
+import { roles } from "../constants/roles";
+import { UsersSearchFields } from "../models/redux_models/UsersSearchFields";
 
 const usersUrl = "/ers/users";
 
 export const userClient = {
-    requestAllUsers(pageNum:number, sortOrders:string[], firstNameLike:string, lastNameLike:string, 
-        emailMatcher:string, usernameMatcher:string, jwt:string) {
+    requestAllUsers(searchCriteria:UsersSearchFields, jwt:string) {
             return ersClient.get(`${usersUrl}/info`, {
                 headers:{
                     Authorization:jwt
                 },
                 params:{
-                    page:pageNum,
-                    sortOrders:sortOrders,
-                    firstName:firstNameLike,
-                    lastName:lastNameLike,
-                    email:emailMatcher,
-                    username:usernameMatcher
+                    page:searchCriteria.page,
+                    sortOrders:searchCriteria.sortOrders.toString(),
+                    firstName:searchCriteria.firstNameLike,
+                    lastName:searchCriteria.lastNameLike,
+                    email:searchCriteria.emailMatcher,
+                    username:searchCriteria.usernameMatcher,
+                    role:searchCriteria.roleId
                 }
             });
     },
