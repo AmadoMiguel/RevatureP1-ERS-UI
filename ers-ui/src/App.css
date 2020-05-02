@@ -101,3 +101,14 @@
 .user-dialog{
   background: rgba(96, 97, 98, 0.451);
 }
+
+#reimbursements-table {
+  margin:auto;
+  padding: 20px;
+  white-space: nowrap;
+}
+.table-header {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}

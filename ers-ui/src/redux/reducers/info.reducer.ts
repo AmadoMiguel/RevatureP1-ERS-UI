@@ -16,7 +16,16 @@ const initialState:CurrentInfo = {
         roleId:0,
         sortOrders:[]
     },
-    currentReimbursementsPage: pageModel
+    currentReimbursementsPage: pageModel,
+    currentReimbursementSearchFilters:{
+        page:0,
+        statusId:0,
+        authorId:0,
+        startDate:'',
+        endDate:'',
+        sortOptions:[],
+        searchBy:"status"
+    }
 }
 
 export function currentInfoReducer (state:CurrentInfo = initialState, action:any) : CurrentInfo {
@@ -32,6 +41,10 @@ export function currentInfoReducer (state:CurrentInfo = initialState, action:any
             case pagesActionTypes.UPDATE_REIMBURSEMENTS_PAGE:
                 return {
                     ...state, currentReimbursementsPage:action.payload
+                }
+            case pagesActionTypes.UPDATE_REIMBURSEMENTS_FILTER:
+                return {
+                    ...state, currentReimbursementSearchFilters:action.payload
                 }
             case pagesActionTypes.CLEAR_INFO:
                 return initialState;

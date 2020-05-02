@@ -80,10 +80,11 @@ export function SearchUsersComponent(props:ISearchUsersProps) {
                         </td>
                         <td>
                             <Select
+                                defaultValue={0}
                                 value={props.searchState.roleId}
                                 onChange={(e:any)=>props.onChange(e)}
                                 name="roleId">
-                                    <option value={0}>--Select--</option>
+                                    <option key={0} value={0}>--Select--</option>
                                     {
                                         roles.map((r)=>{
                                             return(

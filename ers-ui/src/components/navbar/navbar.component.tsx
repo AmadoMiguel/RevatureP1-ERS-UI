@@ -24,7 +24,7 @@ export function NavBarComponent(props:INavbarProps) {
                         <Nav.Link href="/users">Users</Nav.Link>
                         }
                         {
-                            (props.user.sessionInfo.role=="finance") &&
+                            (props.user.sessionInfo.role=="finance")&&
                             <Nav.Link href="/reimbursements">Reimbursements</Nav.Link>
                         }
                         <Nav.Link href="/logout">Logout</Nav.Link>

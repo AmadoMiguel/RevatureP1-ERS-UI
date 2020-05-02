@@ -11,7 +11,7 @@ import PasswordComponent from '../login/password.component';
 import LoginUsername from '../login/login.username';
 import LoginPassword from '../login/login.password';
 import UsersComponent from '../users/users.component';
-import { ReimbursementsComponent } from '../reimbursements/reimbursements.components';
+import ReimbursementsComponent from '../reimbursements/reimbursements.components';
 
 interface IRouterProps {
     user:UserState

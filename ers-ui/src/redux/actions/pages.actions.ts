@@ -4,12 +4,14 @@ import { Dispatch } from "react";
 import { DispatchPayload } from "../../models/redux_models/DispatchPayload";
 import { Reimbursement } from "../../models/DTOs/Reimbursement";
 import { UsersSearchFields } from "../../models/redux_models/UsersSearchFields";
+import { ReimbursementsSearch } from "../../models/redux_models/ReimbursementsSearch";
 
 
 export const pagesActionTypes = {
     UPDATE_USERS_PAGE : "UPDATE_USERS_PAGE",
     UPDATE_USERS_FILTER: "UPDATE_USERS_FILTER",
     UPDATE_REIMBURSEMENTS_PAGE: "UPDATE_REIMBURSEMENTS_PAGE",
+    UPDATE_REIMBURSEMENTS_FILTER: "UPDATE_REIMBURSEMENTS_FILTER",
     CLEAR_INFO:"CLEAR_INFO"
 }
 
@@ -36,6 +38,13 @@ export const updateReimbursementsPage = (reimbursementsPage:Page<Reimbursement>)
             payload:reimbursementsPage
         }
     )
+}
+
+export const updateReimbursementsFilter = (reimbFilter:ReimbursementsSearch) => (dispatch:Dispatch<DispatchPayload<ReimbursementsSearch>>) => {
+    dispatch({
+        type:pagesActionTypes.UPDATE_REIMBURSEMENTS_FILTER,
+        payload:reimbFilter
+    })
 }
 
 export const clearInfo = () => (dispatch:Dispatch<any>) => {

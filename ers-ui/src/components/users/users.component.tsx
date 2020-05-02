@@ -98,6 +98,23 @@ export function UsersComponent(props:IUsersProps) {
         }
         setUpdated(true);
     }
+    function onPageSearchEnter(e:any) {
+        if (e.key == "Enter") {
+            var page:number = parseInt(e.target.value);
+            if (page < 0) {
+                page = 0;
+            } else if (page > props.currentInfo.currentUsersPage.totalPages) {
+                page = props.currentInfo.currentUsersPage.totalPages - 1;
+            } else {
+                page -= 1;
+            }
+            props.updateUsersFilter({
+                ...props.currentInfo.currentUserSearchFilters,
+                page:page
+            });
+            setUpdated(true);
+        }
+    }
     // Function that listens for any change in the sorting orders selections
     function onSortChange(e:React.ChangeEvent<HTMLInputElement>) {
         var newSortOrders:string[] = props.currentInfo.currentUserSearchFilters.sortOrders;
@@ -152,7 +169,8 @@ export function UsersComponent(props:IUsersProps) {
                         setShowUser={setShowUser}/>
                     )
                 })}
-                <PaginationControls 
+                <PaginationControls
+                onPageSearchEnter={onPageSearchEnter}
                 pageInfo={props.currentInfo.currentUsersPage}
                 onPageChange={onPageChange}/>
             </div>
