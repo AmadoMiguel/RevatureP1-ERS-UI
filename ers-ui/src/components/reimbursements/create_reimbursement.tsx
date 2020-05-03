@@ -55,7 +55,7 @@ export function CreateReimbursement(props:ICreateReimbursementProps) {
         })
         .finally(()=>{
             setIsLoading(false);
-            setState({typeId:0, description:'', amount:null});
+            setState({typeId:0, description:'', amount:0});
         });
     }
 

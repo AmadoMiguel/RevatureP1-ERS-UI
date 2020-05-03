@@ -29,7 +29,7 @@ export default function ConfirmDialog(props:IConfirmReimbursementProps) {
                 <Row style={{padding:"10px"}}>
                     <Col><strong>Author</strong></Col>
                     <Col>{props.reimbursementInfo.author.lastName},
-                    {props.reimbursementInfo.author.firstName}</Col>
+                    {" " + props.reimbursementInfo.author.firstName}</Col>
                 </Row>
                 <Row style={{padding:"10px"}}>
                     <Col><strong>Status</strong></Col>

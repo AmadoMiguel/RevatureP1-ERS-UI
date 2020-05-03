@@ -57,6 +57,10 @@ export function ReimbursementsComponent(props:IReimbursementsProps) {
                 .then((resp:AxiosResponse<Page<Reimbursement>>) => {
                     props.updateReimbursementsPage({...resp.data,
                     reFetch:false});
+                    props.updateReimbursementsFilter({
+                        ...props.currentInfo.currentReimbursementSearchFilters,
+                        page:0
+                    });
                     setIsLoading(false);
                     setUpdated(false);
                 })
@@ -121,17 +125,27 @@ export function ReimbursementsComponent(props:IReimbursementsProps) {
     }
 
     function onPageSearchEnter(e:any) {
-
+        if (e.key == "Enter") {
+            var page:number = parseInt(e.target.value);
+            if (page - 1 != props.currentInfo.currentReimbursementsPage.number) {
+                if (page < 0) {
+                    page = 0;
+                } else if (page > props.currentInfo.currentReimbursementsPage.totalPages) {
+                    page = props.currentInfo.currentReimbursementsPage.totalPages - 1;
+                } else {
+                    page -= 1;
+                }
+                props.updateReimbursementsFilter({
+                    ...props.currentInfo.currentReimbursementSearchFilters,
+                    page:page
+                });
+                setUpdated(true);
+            }
+        }
     }
 
     function confirmResolve() {
         setOpenConfirm(false);
-        // setSelectedReimb({
-        //     ...selectedReimb,
-        //     status:reimbursementsStatus[isApprove?1:2],
-        //     dateResolved:new Date(),
-        //     resolver:props.user.userInfo
-        // });
         setIsLoading(true);
         reimbursementsClient.updateReimbursement({
             ...selectedReimb,
@@ -191,7 +205,8 @@ export function ReimbursementsComponent(props:IReimbursementsProps) {
                             <th>Resolver Name</th>
                             <th>Status</th>
                             <th>Type</th>
-                            <th hidden={props.user.sessionInfo.role!="finance"}>Edit</th>
+                            <th hidden={props.user.sessionInfo.role!="finance"
+                        ||props.currentInfo.currentReimbursementSearchFilters.statusId>1}>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -206,7 +221,7 @@ export function ReimbursementsComponent(props:IReimbursementsProps) {
                                         <td>{r.author && r.author.lastName+", "+r.author.firstName}</td>
                                         <td>{r.resolver && r.resolver.lastName+", "+r.resolver.firstName}</td>
                                         <td>{r.status && r.status.name}</td>
-                                        <td>{r.status && r.type.name}</td>
+                                        <td>{r.type && r.type.name}</td>
                                         {
                                             props.user.sessionInfo.role=="finance"&&
                                             r.status.name=="pending"&&
