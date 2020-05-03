@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Page } from '../../models/DTOs/Page';
 import { User } from '../../models/DTOs/User';
+import { Reimbursement } from '../../models/DTOs/Reimbursement';
 
 interface IPaginationProps {
-    pageInfo: Page<User>;
+    pageInfo: Page<User|Reimbursement>;
     onPageSearchEnter:(e:any)=>void;
     onPageChange:(e:any)=>void;
 }

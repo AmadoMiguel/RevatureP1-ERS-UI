@@ -12,6 +12,7 @@ import LoginUsername from '../login/login.username';
 import LoginPassword from '../login/login.password';
 import UsersComponent from '../users/users.component';
 import ReimbursementsComponent from '../reimbursements/reimbursements.components';
+import CreateReimbursement from '../reimbursements/create_reimbursement';
 
 interface IRouterProps {
     user:UserState
@@ -38,6 +39,8 @@ export function RouterComponent(props:IRouterProps) {
                 ()=>{return <><Redirect to="/login"/></>}} />
                 <Route path="/reimbursements" component={props.user.isLoggedIn?
                 ReimbursementsComponent:()=>{return <><Redirect to="/login"/></>}} />
+                <Route path="/createreimbursement" component={props.user.isLoggedIn?
+                CreateReimbursement:()=>{return <><Redirect to="/login"/></>}} />
                 <Route path="/logout"
                 component={(props.user.isLoggedIn||props.user.sessionInfo.username)?LogoutComponent:
                     ()=>{return <><Redirect to="/login"/></>}}/>

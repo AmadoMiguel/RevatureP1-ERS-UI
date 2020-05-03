@@ -18,6 +18,9 @@ import { yellow, blue, red } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { AppState } from '../../models/redux_models/AppState';
 import { UserState } from '../../models/redux_models/UserState';
+import { updateReimbursementsFilter } from '../../redux/actions/pages.actions';
+import { ReimbursementsSearch } from '../../models/redux_models/ReimbursementsSearch';
+import { CurrentInfo } from '../../models/redux_models/CurrentInfo';
 
 interface ILoginPasswordProps {
     user:UserState,
@@ -145,7 +148,7 @@ export function LoginPassword(props:ILoginPasswordProps) {
 
 const mapStateToProps = (state:AppState) => {
     return {
-        user:state.user    
+        user:state.user
     }
 }
 const mapDispatchToProps = {

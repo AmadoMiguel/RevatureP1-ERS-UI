@@ -19,7 +19,7 @@ const initialState:CurrentInfo = {
     currentReimbursementsPage: pageModel,
     currentReimbursementSearchFilters:{
         page:0,
-        statusId:0,
+        statusId:1,
         authorId:0,
         startDate:'',
         endDate:'',

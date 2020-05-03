@@ -7,6 +7,7 @@ import { CurrentInfo } from '../../models/redux_models/CurrentInfo';
 import { ReimbursementsSearch } from '../../models/redux_models/ReimbursementsSearch';
 
 interface ISearchReimbursementsProps {
+    userRole:string;
     currentSearchState:ReimbursementsSearch;
     searchBy:string;
     setSearchBy:(v:any)=>void;
@@ -17,8 +18,9 @@ interface ISearchReimbursementsProps {
 export default function SearchReimbursementsComponent(props:ISearchReimbursementsProps) {
     return (
         <Card className="col-lg-10 col-sm-12" style={{margin:'5px auto'}}>
+            <Card.Title>Search Reimbursements</Card.Title>
             <Form onSubmit={(e:React.FormEvent<HTMLFormElement>)=>props.onSearchSubmit(e)}>
-                <Row>
+                <Row hidden={props.userRole!="finance"}>
                     <Col lg={5} xs={6}>
                         <Form.Group className="row">
                             <Form.Label 
@@ -54,7 +56,9 @@ export default function SearchReimbursementsComponent(props:ISearchReimbursement
                                     name="statusId"
                                     className="col-lg-6 col-sm-6"
                                     value={props.currentSearchState.statusId}
-                                    onChange={(e)=>props.onSearchChange(e)}>
+                                    onChange={(e)=>props.onSearchChange(e)}
+                                    isInvalid={props.currentSearchState.statusId==0}
+                                    required>
                                         <option key={0} value={0}>-Select-</option>
                                         {
                                             reimbursementsStatus.map((r)=>{
@@ -67,12 +71,12 @@ export default function SearchReimbursementsComponent(props:ISearchReimbursement
                                 </>:
                                 <>
                                     <Form.Label 
-                                    htmlFor="searchBy"
+                                    htmlFor="searchByAuthor"
                                     className="col-lg-6 col-sm-6 col-form-label">
                                         Author Id
                                     </Form.Label>
                                     <Form.Control
-                                    id="searchBy"
+                                    id="searchByAuthor"
                                     type="number"
                                     className="col-lg-6 col-sm-6"
                                     value={props.currentSearchState.authorId}

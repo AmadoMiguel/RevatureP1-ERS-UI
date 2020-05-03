@@ -13,7 +13,8 @@ export interface Page<T> {
     sort: Sort,
     numberOfElements: number,
     first: boolean,
-    empty: boolean
+    empty: boolean,
+    reFetch: boolean
 }
 
 export const pageModel =  {
@@ -42,6 +43,7 @@ export const pageModel =  {
     },
     numberOfElements: 0,
     first: true,
-    empty: true
+    empty: true,
+    reFetch: false
 }
 

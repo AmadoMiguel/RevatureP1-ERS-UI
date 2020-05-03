@@ -14,10 +14,15 @@ import { UserProfile } from '../user_info/user_profile';
 import NavBarComponent from '../navbar/navbar.component';
 import { Typography } from '@material-ui/core';
 import GeneralTitleComponent from '../general_title';
+import { CurrentInfo } from '../../models/redux_models/CurrentInfo';
+import { ReimbursementsSearch } from '../../models/redux_models/ReimbursementsSearch';
+import { updateReimbursementsFilter } from '../../redux/actions/pages.actions';
 
 interface IHomeProps {
     userInfo:UserState;
+    currentInfo:CurrentInfo,
     updateUserInfo:(user:User) => void;
+    updateReimbursementsFilter:(reimbFilter:ReimbursementsSearch)=>void;
 }
 
 export function HomeComponent(props:IHomeProps) {
@@ -30,6 +35,13 @@ export function HomeComponent(props:IHomeProps) {
                     props.userInfo.sessionInfo.jwt)
                 .then((resp:AxiosResponse<User>) => {
                     props.updateUserInfo(resp.data);
+                    if (props.userInfo.sessionInfo.role=="user") {
+                        props.updateReimbursementsFilter({
+                            ...props.currentInfo.currentReimbursementSearchFilters,
+                            searchBy:"author",
+                            authorId:resp.data.id
+                        })
+                    }
                     toast.success("Welcome, " + resp.data.firstName);
                 })
                 .catch((err:any) => {
@@ -57,12 +69,14 @@ export function HomeComponent(props:IHomeProps) {
 
 const mapStateToProps = (state:AppState) => {
     return {
-        userInfo:state.user
+        userInfo:state.user,
+        currentInfo:state.currentInfo
     }
 }
 
 const mapDispatchToProps = {
-    updateUserInfo:updateUserInfo
+    updateUserInfo:updateUserInfo,
+    updateReimbursementsFilter:updateReimbursementsFilter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeComponent);

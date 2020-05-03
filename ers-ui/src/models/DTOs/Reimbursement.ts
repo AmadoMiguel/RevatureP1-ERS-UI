@@ -4,6 +4,7 @@ import { ReimbursementStatus } from "./ReimbursementStatus";
 
 export interface Reimbursement {
     id:number;
+    amount:number;
     description:string;
     type:ReimbursementType;
     author:User;

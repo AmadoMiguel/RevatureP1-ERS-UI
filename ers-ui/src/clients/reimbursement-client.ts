@@ -1,5 +1,6 @@
 import { ReimbursementsSearch } from "../models/redux_models/ReimbursementsSearch";
 import { ersClient } from ".";
+import { Reimbursement } from "../models/DTOs/Reimbursement";
 
 const reimbursementsUrl = "/ers/reimbursements";
 export const reimbursementsClient = {
@@ -27,6 +28,22 @@ export const reimbursementsClient = {
                 startDate:searchCriteria.startDate,
                 endDate:searchCriteria.endDate,
                 sortBy:searchCriteria.sortOptions.toString()
+            }
+        });
+    },
+    createReimbursement(reimb:any, jwt:string) {
+        return ersClient.post(`${reimbursementsUrl}/create`,reimb,
+        {
+            headers:{
+                Authorization:jwt
+            }
+        })
+    },
+    updateReimbursement(reimb:Reimbursement, jwt:string) {
+        return ersClient.patch(`${reimbursementsUrl}/update`,reimb,
+        {
+            headers:{
+                Authorization:jwt
             }
         });
     }
